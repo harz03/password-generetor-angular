@@ -40,7 +40,7 @@ export class AppComponent {
     '+',
     '-',
     '&&',
-    '||',
+    '|',
     '!',
     '(',
     ')',
@@ -61,14 +61,48 @@ export class AppComponent {
 
   constructor() {
     this.passowordLength = 0;
+    this.alpahbetChekbox = true;
+    this.numberCheckbox = true;
+    this.specialCharacterCheckbox = true;
   }
-  generatePassword() {}
+
+  generatePassword() {
+    let first = this.passowordLength / 3;
+    let second = this.passowordLength / 3;
+    let last = this.passowordLength - first - second;
+    let arr = [];
+    for (let i = 0; i < first; ++i) {
+      arr.push(
+        AppComponent.alphabet[
+          Math.floor(Math.random() * AppComponent.alphabet.length)
+        ]
+      );
+    }
+    for (let i = 0; i < first; ++i) {
+      arr.push(
+        AppComponent.specialCharacter[
+          Math.floor(Math.random() * AppComponent.specialCharacter.length)
+        ]
+      );
+    }
+    for (let i = 0; i < first; ++i) {
+      arr.push(
+        AppComponent.number[
+          Math.floor(Math.random() * AppComponent.number.length)
+        ]
+      );
+    }
+    this.password = arr.join('');
+  }
+
   changealpahbetChekbox() {
     this.alpahbetChekbox = !this.alpahbetChekbox;
   }
+
   changespecialCharacterCheckbox() {
     this.specialCharacterCheckbox = !this.specialCharacterCheckbox;
   }
+
   changenumberCheckbox() {
     this.numberCheckbox = !this.numberCheckbox;
   }
